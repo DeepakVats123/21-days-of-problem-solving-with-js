@@ -86,23 +86,25 @@ function printSquare(raw){
 
 // 6. **Print Hollow Pyramid Pattern**
 
-function printHollowPyramid(row){
-    for(let i = 1; i <= 2*row - 1; i+=2) {
-        let str = ''
-        const currentRow = (i + 1) / 2
-
-        for(let j = 1; j <= row + currentRow - 1; j++) {
-            if(j <= row - currentRow || j > row - currentRow + 1 && j < row + currentRow - 1 && i !== 2*row - 1) {
-                str += ' '
-            } else  {
-                str += '*'
+function printHollowPyramid(raw){
+    for(let i=1; i<=raw; i++){
+        let line = "";
+        for(let j = 1; j <= raw - i; j++){
+            line += " "
+        }
+        for(let k=1; k <= 2*i -1; k++){
+            if(k===1 || i === raw || k === 2*i -1){
+                line += "*"
+            }
+            else{
+                line += " "
             }
         }
-
-        console.log(str);
+        console.log(line);
     }
+
 }
-// printHollowPyramid(5)
+printHollowPyramid(5)
 
 
 
