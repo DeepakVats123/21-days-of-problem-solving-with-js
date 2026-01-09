@@ -104,7 +104,7 @@ function printHollowPyramid(raw){
     }
 
 }
-printHollowPyramid(5)
+// printHollowPyramid(5)
 
 
 
