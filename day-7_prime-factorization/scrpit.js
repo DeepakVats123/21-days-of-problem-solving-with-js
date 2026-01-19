@@ -84,3 +84,27 @@ function DistinctPrimeFactorCount(N){
 }
 // console.log(DistinctPrimeFactorCount(100));
 
+// ## **4. Check if a Number Is a Powerful Number**
+// - **Input:** `N = 36`
+// - **Output:** `Powerful Number`
+//   (36 → 2² × 3² → all exponents ≥ 2)
+
+function isPowerFulNumber(N){
+    const factors = primeFactorization(N)
+    const facObj = {}
+    console.log(factors);
+    factors.forEach((el)=>{
+        facObj[el] ? facObj[el] += 1 : facObj[el] = 1;
+    })
+    const keys = Object.values(facObj);
+    console.log("keys", keys);
+    let flag = true;
+    for(let el of keys ){
+        if(el < 2){
+            flag = false;
+            break
+        }
+    }
+    return flag ? "Powerful Number" : "Not a Powerful Number"
+}
+console.log(isPowerFulNumber(40));
