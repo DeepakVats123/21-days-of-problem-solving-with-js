@@ -110,4 +110,45 @@ function checkNotRepeating(str){
 return charArr[0];
 
 }
-// console.log(checkNotRepeating("aabbcddeff"));s
+// console.log(checkNotRepeating("aabbcddeff"));
+
+// # 🏠 **Homework Questions (7 Challenging Problems)**
+
+// ### **1️⃣ Remove All Duplicate Characters (Keep First Occurrence)**
+// - **Input:** `"programming"`
+// - **Output:** `"progamin"`
+
+function removeDuplicates(str){
+    const obj = {}
+    let strF = "";
+    for(let i in str){
+        if(obj[[str[i]]]){
+            obj[[str[i]]] += 1;
+        }
+        else{
+            obj[[str[i]]] = 1
+            strF += str[i]
+        }
+    }
+    // let strFinal = Object.keys(obj).join("") // we can create like this with inbuilt function
+    return strF
+}
+// console.log(removeDuplicates("programming"));
+
+// ### **2️⃣ Check if a String Contains Only Alphabets (No Regex)**
+// - **Input:** `"HelloWorld123"`
+// - **Output:** `false`
+// - ASCAII value of 0–9 (48–57)
+
+const isStringContainOnlyChar = (str) => {
+
+    let hasAlpha = /[a-zA-Z]/.test(str) && /\d/.test(str)
+    console.log("Has Alpha ", hasAlpha);
+    for(let i in str){
+        if(str.charCodeAt(i) >= 48 && str.charCodeAt(i) < 57){
+            return true;
+        }
+    }
+    return false;
+}
+// console.log(isStringContainOnlyChar("123"));
