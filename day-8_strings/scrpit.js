@@ -142,8 +142,8 @@ function removeDuplicates(str){
 
 const isStringContainOnlyChar = (str) => {
 
-    let hasAlpha = /[a-zA-Z]/.test(str) && /\d/.test(str)
-    console.log("Has Alpha ", hasAlpha);
+    let hasAlpha = /[a-zA-Z]/.test(str) &&  /\d/.test(str) // /\d/ use to check digits // we can use regex and .test()
+    // console.log("Has Alpha ", hasAlpha);
     for(let i in str){
         if(str.charCodeAt(i) >= 48 && str.charCodeAt(i) < 57){
             return true;
@@ -152,3 +152,112 @@ const isStringContainOnlyChar = (str) => {
     return false;
 }
 // console.log(isStringContainOnlyChar("123"));
+
+// ### **3️⃣ Reverse Only the Words in a Sentence**
+// - **Input:** `"I love coding"`
+// - **Output:** `"coding love I"`
+
+function reverseWords(str){
+    let reverseStr = ""
+    let word = ""
+    for(let char of str){
+        if(char === " "){
+            reverseStr = word + " " + reverseStr;
+            word = ""
+        }else{
+            word += char
+        }
+    }
+    reverseStr = word + " " + reverseStr;
+    return reverseStr
+}
+// console.log(reverseWords("I love coding"));
+
+// ### **4️⃣ Find the Longest Word in a Sentence**
+// - **Input:** `"coding is beautiful"`
+// - **Output:** `"beautiful"`
+
+function findLongestWord(str){
+    let count = 0;
+    let maxCount = 0;
+    let word = ""
+    let longestWord = ""
+    
+    for(let i=0; i<str.length; i++){
+        if(str[i] === " "){
+           if(count > maxCount){
+            maxCount = count
+            longestWord = word
+            word = ""
+            count = 0
+           }else{
+            word = ""
+            count = 0
+           }
+        }else{
+            count++
+            word += str[i]
+        }
+    }
+    return word.length > longestWord.length ? word : longestWord;
+}
+// console.log(findLongestWord("coding is beautiful"));
+
+// ### **5️⃣ Count the Number of Words (Manually Without split)**
+// - **Input:** `"  hi   there  world "`
+// - **Output:** `3 words`
+
+function countNumberOfWords(str){
+//    return str.trim().split(/\s+/).length; // using inbuilt methods 
+    let count = 0;
+    let isWord = false;
+
+for (let i = 0; i < str.length; i++) {
+  if (str[i] !== " " && !isWord) {
+    count++;
+    isWord = true;
+  } else if (str[i] === " ") {
+    isWord = false;
+  }
+}
+return count
+}
+let result = countNumberOfWords("  hi   there  world ")
+// console.log(result);
+
+// ### **6️⃣ Find All Substrings of a String (No Built-ins)**
+// - **Input:** `"abc"`
+// - **Output:** [a, ab, abc, b, bc, c]
+
+function genrateSubStrings(str){
+const subStringsArr = []
+    for(let i=0; i<str.length; i++){
+        let subStr = "";
+        for(let j=i; j< str.length; j++){
+            subStr += str[j]
+            subStringsArr.push(subStr)
+        }
+    }
+    return subStringsArr
+}
+// console.log(genrateSubStrings("abc"))
+
+// ### **7️⃣ Compress a String (Basic Run-Length Encoding)**
+// - **Input:** `"aaabbccccd"`
+// - **Output:** `"a3b2c4d1"`
+
+function compressAString(str){
+    let count = 1;
+    let compressedStr = ""
+    for(let i=0; i<str.length; i++){
+        if(str[i] === str[i+1]){
+            count++
+        }
+        else{
+            compressedStr += str[i] + count
+            count = 1;
+        }
+    }
+    return compressedStr;
+}
+console.log(compressAString("aaabbccccd"));
