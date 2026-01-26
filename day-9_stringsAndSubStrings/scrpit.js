@@ -27,14 +27,14 @@ function findSubString(mainStr, target){
     let subStr = ""
     let outerLoopCount = 0;
     let innerLoopCount = 0;
-    for(let i=0; i<mainStr.length; i++){
+    for(let i=0; i<=mainStr.length-target.length; i++){
         let targetInd = 0
         outerLoopCount++;
         if(mainStr[i] === target[targetInd]){
-            for(let j=i; j<mainStr.length; j++){
+            for(let j=0; j<target.length; j++){
                 innerLoopCount++;
-                if(mainStr[j] === target[targetInd]){
-                    subStr += mainStr[j]
+                if(mainStr[j+i] === target[j]){
+                    subStr += mainStr[j+i]
                     targetInd++;
                     if(subStr === target){
                         break;
@@ -54,3 +54,27 @@ function findSubString(mainStr, target){
     
 }
 console.log(findSubString("hellothere","there"));
+
+
+// ### **2️⃣ Manual Substring Search (Without Using indexOf)**
+// - **Input:** text = `"hello world"`, pattern = `"wor"`
+// - **Output:** `Found at index 6`
+
+
+function findIndexOfSubstring(str, pattern){
+    for(let i=0; i<str.length-pattern.length; i++){
+        let subStrFlag = false;
+        if(str[i] === pattern[0]){
+            for(let j=0; j<pattern.length; j++){
+                if(str[j+i] !== pattern[j]){
+                    break;
+                }
+                subStrFlag = true;
+            }
+        }
+        if(subStrFlag){
+            return i;
+        }
+    }
+}
+// console.log(findIndexOfSubstring("hello world", "llo"));
