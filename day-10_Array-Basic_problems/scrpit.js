@@ -126,12 +126,36 @@ function secondLargest(arr){
 // * **Input:** `[1, 2, 3, 4, 5]`, `K = 2`
 // * **Output:** `[4, 5, 1, 2, 3]`
 
+function rotateArray (arr, k){
+    // basic solution using inbuid methods
+    // for(let i=0; i<k; i++){
+    //     arr.unshift(arr[arr.length-1])
+    //     arr.pop() 
+    // }
+    
+    // return arr;
 
+    // optimise solution using logic
+    console.log("k before ", k);
+    const n = arr.length;
+    k = k % n; // handle k > n
+    console.log("k after ", k);
+    reverse(arr, 0, n - 1);
+    reverse(arr, 0, k - 1);
+    reverse(arr, k, n - 1);
 
+    return arr;
+}
 
-
-
-
+function reverse(arr, start, end) {
+    while (start < end) {
+        [arr[start], arr[end]] = [arr[end], arr[start]];
+        start++;
+        end--;
+    }
+    console.log(arr);
+}
+// console.log(rotateArray([1, 2, 3, 4, 5],6));
 
 
 // ### 3️⃣ Check if Two Arrays Are Equal (Same Order)
@@ -165,4 +189,68 @@ function CountEvenOdd(arr){
     }
     return `Even = ${Evens} Odd = ${Odds}`
 }
-console.log(CountEvenOdd([2, 5, 7, 8, 10]));
+// console.log(CountEvenOdd([2, 5, 7, 8, 10]));
+
+
+// ### 5️⃣ Find All Unique Pairs Whose Sum Equals a Target
+// * **Input:** `[1, 2, 3, 4, 5]`, target = 6
+// * **Output:** `(1,5), (2,4)`
+
+function findUniquePairs(arr, target){
+    let left = 0;
+    let right = arr.length-1
+    let output = [];
+    while(left < right){
+        if(arr[left] + arr[right] === target){
+            let values = [arr[left], arr[right]]
+            output.push(values);
+            left++;
+            right--;
+        }
+        else if(arr[left] + arr[right] < target){
+            left++
+        }
+        else if(arr[left] + arr[right] > target){
+            right--
+        }
+    }
+    return output;
+}
+// console.log(findUniquePairs([1, 2, 3, 4, 5,6,7,8,9,10],8))
+
+
+
+// ### 6️⃣ Left Shift an Array by One Position
+// * **Input:** `[1, 2, 3, 4]`
+// * **Output:** `[2, 3, 4, 1]`
+//   ✨ Manual shifting, moving first element to end.
+
+function reverse(arr, start, end){
+    while(start < end){
+        [arr[start], arr[end]] = [arr[end], arr[start]]
+        start++;
+        end--;
+    }
+    console.log("reverse Arr- ", arr);
+}
+function leftShiftByOnePosition(arr){
+    let n = arr.length-1;
+    reverse(arr, 0, n );
+    reverse(arr, 0, n-1 );
+    return arr;
+}
+console.log(leftShiftByOnePosition([1, 2, 3, 4]));
+
+
+// ### 7️⃣ Count How Many Times an Element Appears in an Array
+// * **Input:** array = `[1, 4, 4, 4, 2]`, element = `4`
+// * **Output:** `3`
+
+function countElementAppears (arr, element){
+    let count = 0;
+    for(el of arr){
+        if(el === element) count++;
+    }
+    return count;
+}
+// console.log(countElementAppears([1, 4, 4, 4, 2],4));

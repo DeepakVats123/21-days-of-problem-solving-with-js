@@ -71,7 +71,7 @@ function CalculateElectricityBill(units){
     else {
         bill = units * 5
     }
-    return bill
+    return `Bill = ${bill}`
 }
 // console.log(CalculateElectricityBill(230))
 
