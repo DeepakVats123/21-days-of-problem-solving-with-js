@@ -55,7 +55,7 @@ function findFirstRepeating(arr){
     //     }
     // }
 
-    // this solution is optimised beca
+    // this solution is optimised 
     let obj = {}
     for(let i=0; i<arr.length; i++){
         if(obj[arr[i]]){
@@ -81,6 +81,57 @@ function findFirstRepeating(arr){
 // - **Output:** `6`
 
 function maxSubArraySum (arr){
-    
+    let maxSum = -Infinity;
+    let sum = 0
+    for(let i=0; i<arr.length; i++){
+        sum += arr[i]
+        if(sum > maxSum){
+            maxSum = sum;
+        }
+        if(sum < 0){
+            sum = 0;
+        }
+    }
+    return maxSum;
 }
-console.log(maxSubArraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+// console.log(maxSubArraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+
+
+// # 🏠 **Homework Questions**
+
+// ### **1️⃣ Find the Longest Subarray with Sum = K (Optimized)**
+// - **Input:** `[1, 2, 3, 4, 5]`, K = 9
+// - **Output:** `[2, 3, 4]`
+
+function findSubarraySumWithK (arr, k){
+    let subArr = []
+
+    for(let i=0; i<arr.length; i++){
+        let sum = 0;
+        for(let j = i; j<arr.length; j++){
+            sum += arr[j]
+            subArr.push(arr[j])
+            if(sum === k){
+                break;
+            }  
+        }
+        if(sum === k) break;
+        else subArr = [];
+    }
+    return subArr
+}
+// console.log(findSubarraySumWithK([1, 2, 3, 4, 5], 9));
+
+
+// ### **2️⃣ Find the Length of the Longest Subarray with No Repeating Elements**
+// - **Input:** `[1,2,3,1,2,3,4]`
+// - **Output:** `4`
+
+function longestSubArrayWithNoRepeating(arr){
+    let maxLength = 0;
+
+    for(let i=0; i<arr.length; i++){
+        
+    }
+}
+console.log(longestSubArrayWithNoRepeating([1,2,3,1,2,3,4]));
