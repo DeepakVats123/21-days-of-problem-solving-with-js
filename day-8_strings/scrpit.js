@@ -2,25 +2,45 @@
 // - **Input:** `"javascript"`
 // - **Output:** `"tpircsavaj"`
 
-function reverseAstring(str){
-//    return str.split("").reverse().join("") // using inbuild js method 
-    let revStr = ""; // using logic
-    for(let i=str.length-1; i>=0; i--){
-        revStr += str[i];
-    }
-    return revStr
-}
+// function reverseAstring(str){
+// //    return str.split("").reverse().join("") // using inbuild js method 
+//     let revStr = ""; // using logic
+//     for(let i=str.length-1; i>=0; i--){
+//         revStr += str[i];
+//     }
+//     return revStr
+// }
 // console.log(reverseAstring("javascript"));
 
+// using 2 pointer technique
+
+function reverseAStringUsingTwoPointer(str){
+    // let rev = str.split("").reverse().join(" "); // this is inbuild method;
+    
+    let strArr = str.split("")
+    let left = 0;
+    let right = strArr.length-1;
+
+    while(left < right){
+        const temp = strArr[left];
+        strArr[left] = strArr[right];
+        strArr[right] = temp;
+        left++;
+        right--;
+    }
+    return strArr.join("") === str;
+}
+
+// console.log(reverseAStringUsingTwoPointer("rar"));
 
 // ### **2️⃣ Check if a String is a Palindrome**
 // - **Input:** `"racecar"`
 // - **Output:** `Palindrome`
 
 function checkPalindrome(str){
-    let j = str.length-1;
+    let n = str.length-1;
     let flag = true
-    for(let i=0; i<=j; i++){
+    for(let i=0; i<=n; i++){
         if(str[i] !== str[j]){
             flag=false;
         }
@@ -260,4 +280,19 @@ function compressAString(str){
     }
     return compressedStr;
 }
-console.log(compressAString("aaabbccccd"));
+// console.log(compressAString("aaabbccccd"));
+
+let array = [1,2,3,[4,5],[6,7],8,[9, 10, [11, 12, 13, [14, 15]]]]
+const output = [];
+function flatArr(arr) {
+    for(let i=0; i<arr.length; i++){
+        if(Array.isArray(arr[i])){
+            flatArr(arr[i])
+        }
+        else{
+            output.push(arr[i])
+        }
+    }
+}
+flatArr(array);
+console.log(output);

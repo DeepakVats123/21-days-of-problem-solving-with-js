@@ -142,4 +142,46 @@ function findMaximum(arr){
     }
     return maxVal;
 };
-console.log(findMaximum([4, 9, 2, 11, 6]));
+// console.log(findMaximum([4, 9, 2, 11, 6]));
+
+// ### **4️⃣ Find the First Element Greater Than X**
+// - **Input:** `[2, 5, 9, 12, 15]`, X = `10`
+// - **Output:** `12`
+
+function firstGrater(arr, x){
+    for(let i=0; i<arr.length; i++){
+        if(arr[i] > x){
+            return arr[i]
+        }
+    }
+}
+// console.log(firstGrater([2, 5, 9, 12, 15,18], 12));
+
+// ### **5️⃣ Check if Array is Strictly Increasing (Using Linear Scan)**
+
+// - **Input:** `[1, 2, 3, 5, 4]`
+// - **Output:** `false`
+
+const isIncreasing = (arr) => {
+ for(let i=1; i<arr.length; i++){
+    if(arr[i] < arr[i-1] || arr[i] === arr[i-1]){
+        return false
+    }
+ }
+ return true
+}
+// console.log(isIncreasing([1, 2, 3, 4, 5]))
+
+// ### **6️⃣ Find the First String That Starts With a Given Character**
+// - **Input:** `["apple", "ball", "cat", "apply"]`, char = `'a'`
+// - **Output:** `"apple"`
+
+function FindFirstString(arr, str){
+    for(let i=0; i<arr.length; i++){
+        if(arr[i][0] === str){
+            return arr[i]
+        }
+    }
+}
+// console.log(FindFirstString(["apple", "ball", "cat", "apply"],"c"));
+

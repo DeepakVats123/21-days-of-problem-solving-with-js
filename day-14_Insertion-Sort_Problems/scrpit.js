@@ -35,6 +35,7 @@ function insertionSortDESC (arr) {
 }
 // console.log(insertionSortDESC([3, 8, 2, 7, 4]));
 
+// ### **3️⃣ Insert a New Element into an Already Sorted Array (Using Insertion Logic)
 // * **Input:** Sorted: `[1, 3, 5, 6]`, New element: `4`
 // * **Output:** `[1, 3, 4, 5, 6]`
 
@@ -51,4 +52,22 @@ const insertionSortAndAddNewEle = (arr, newEle) => {
     }
     return arr;
 }
- console.log(insertionSortAndAddNewEle([1, 3, 5, 6],4));
+//  console.log(insertionSortAndAddNewEle([1, 3, 5, 6],4));
+
+// ### **1️⃣ Sort an Array but Keep Odd Numbers Fixed**
+// * **Input:** `[9, 4, 7, 6, 3, 2]`
+// * **Output:** Sort evens only, odd positions unchanged.
+
+function sortOnlyEven(arr){
+    for(let i=1; i<arr.length; i++){
+        let current = arr[i];
+        let j = i-1;
+        while(j >= 0 && current > arr[j] && arr[j]%2 === 0){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = current;
+    }
+    return arr;
+}
+console.log(sortOnlyEven([9, 4, 7, 6, 3, 2]));
