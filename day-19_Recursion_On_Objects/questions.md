@@ -133,9 +133,7 @@
   }
 }
 ```
-
-Search key: `"a"`
-
+- **Search key:** `"a"`
 - **Output:** `3`
 
 ---

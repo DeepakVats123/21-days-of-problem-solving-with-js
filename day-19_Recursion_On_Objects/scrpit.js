@@ -146,10 +146,119 @@ function printAllKeys(obj){
         
     }
 }
-printAllKeys({
-  a: {
-    b: {
-      c: 1
+// printAllKeys({
+//   a: {
+//     b: {
+//       c: 1
+//     }
+//   }
+// })
+
+
+// ### **1️⃣ Convert All String Values to Uppercase in a Nested Object**
+
+// - **Input:**
+
+// ```js
+// {
+//   name: "john",
+//   details: {
+//     city: "mumbai",
+//     role: "dev"
+//   }
+// }
+// - **Output:** All strings converted to uppercase.
+
+function convertAllStringToUpparcase(obj){
+    for(let key in obj){
+        if(typeof obj[key] === 'object' && obj[key] !== null ){
+            convertAllStringToUpparcase(obj[key])
+        }
+        else{
+            obj[key] = obj[key].toUpperCase();
+        }   
     }
-  }
-})
+    return obj;
+}
+// console.log(convertAllStringToUpparcase({
+//   name: "john",
+//   details: {
+//     city: "mumbai",
+//     role: "dev"
+//   }
+// }))
+
+// ### **2️⃣ Count How Many Times a Key Appears in a Nested Object**
+// - **Input:**
+// ```js
+// {
+//   a: 1,
+//   b: {
+//     a: 2,
+//     c: {
+//       a: 3
+//     }
+//   }
+// }
+// - **Search key:** `"a"`
+// - **Output:** `3
+
+function CountAppears(obj, count=0){
+    for(let key in obj){
+        if(typeof obj[key] === 'object' && obj[key] !== null){
+          count = count +  CountAppears(obj[key])
+        }
+        else if(key === "a"){
+            count++
+        }
+    }
+    return count;
+}
+// console.log(CountAppears({
+//   a: 1,
+//   b: {
+//     a: 2,
+//     c: {
+//       a: 3
+//     },
+//     d : {
+//         e: 4
+//     }
+//   }
+// }))
+
+// ### **3️⃣ Find the Depth of a Nested Object**
+// - **Input:**
+
+// {
+//   a: {
+//     b: {
+//       c: {
+//         d: 1;
+//       }
+//     }
+//   }
+// }
+// - **Output:** `4`
+
+
+function findDepth (obj, count=1){
+    for(let key in obj){
+        if(typeof obj[key] === 'object' && obj[key] !== null){
+            count +1;
+           count = count + findDepth(obj[key])
+        }
+        
+    }
+    return count
+}
+// console.log(findDepth({
+//   a: {
+//     b: {
+//       c: {
+//         d: 1
+//       }
+//     }
+//   }
+// }));
+
